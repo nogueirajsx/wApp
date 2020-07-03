@@ -1,10 +1,49 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import * as React from 'react';
+import { View, StyleSheet, Dimensions, StatusBar, Text, TouchableHighlight, Image } from 'react-native';
+import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
+import renderTabBar from './TabBarMenu'
 
-const Principal = props => (
-    <View style={{ marginTop: 100 }}>
-        <Text>Pagina principal da aplicação</Text>
-    </View>
-)
+const FirstRoute = () => (
+  <View style={[styles.scene, { backgroundColor: '#ff4081' }]} />
+);
 
-export default Principal
+const SecondRoute = () => (
+  <View style={[styles.scene, { backgroundColor: '#673ab7' }]} />
+);
+
+const initialLayout = { width: Dimensions.get('window').width };
+
+export default function TabViewExample() {
+  const [index, setIndex] = React.useState(0);
+  const [routes] = React.useState([
+    { key: 'first', title: 'First' },
+    { key: 'second', title: 'Second' },
+  ]);
+
+  const renderScene = SceneMap({
+    first: FirstRoute,
+    second: SecondRoute,
+  });
+
+
+  return (
+    <TabView
+      navigationState={{ index, routes }}
+      renderScene={renderScene}
+      onIndexChange={setIndex}
+      initialLayout={initialLayout}
+      style={styles.container}
+      renderTabBar={renderTabBar}
+
+    />
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    marginTop: StatusBar.currentHeight,
+  },
+  scene: {
+    flex: 1,
+  },
+});

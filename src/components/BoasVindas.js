@@ -10,7 +10,7 @@ export default props => (
                 <Image source={require('../imgs/logo.png')} />  
             </View>
             <View style={{ flex: 1 }}>
-                <Button title='Fazer Login' onPress={() => Actions.formLogin()} />
+                <Button title='Fazer Login' color="#115e54" onPress={() => Actions.formLogin()} />
             </View>
         </View>
     </ImageBackground>
