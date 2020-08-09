@@ -10,7 +10,7 @@ import reducers from './reducers';
 
 class App extends Component {
 
-    UNSAFE_componentWillMount() {
+    componentDidMount() {
         if (!firebase.apps.length) {
             firebase.initializeApp(fbConfig);
         }
